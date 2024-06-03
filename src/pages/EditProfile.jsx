@@ -1,17 +1,39 @@
 import { useLoaderData } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import { getAuth, updatePassword } from "firebase/auth";
 
 export default function EditProfile() {
+  const auth = getAuth();
+
+  const user = auth.currentUser;
   const data = useLoaderData();
 
+  console.log("new:", user);
+  console.log(data);
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
-
     const name = form.name.value;
-
     const age = form.age.value;
     const mobileNumber = form.mobileNumber.value;
+    const newPassword = form.newPassword.value;
+    const confirmNewPassword = form.confirmNewPassword.value;
+
+    // Check if new password and confirm password are the same
+    if (newPassword === confirmNewPassword) {
+      updatePassword(user, newPassword)
+        .then(() => {
+          // Update successful.
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    } else {
+      console.log("Passwords do not match");
+    }
+
+    // Update password
 
     const userData = {
       name,
@@ -28,7 +50,7 @@ export default function EditProfile() {
       body: JSON.stringify(userData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log("patched:", data));
   };
   return (
     <div>
@@ -63,6 +85,22 @@ export default function EditProfile() {
           <input
             type="text"
             name="mobileNumber"
+            className="py-2 px-1 bg-slate-50 "
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="">New Password</label>
+          <input
+            type="password"
+            name="newPassword"
+            className="py-2 px-1 bg-slate-50 "
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="">Confirm New Password</label>
+          <input
+            type="password"
+            name="confirmNewPassword"
             className="py-2 px-1 bg-slate-50 "
           />
         </div>
