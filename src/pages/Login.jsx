@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import GoogleLogin from "../components/Login-Register/GoogleLogin";
 import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
-import GoogleLogin from "../components/Login-Register/GoogleLogin";
 
 const Login = () => {
   const { signIn, user } = useAuth();
@@ -16,8 +16,6 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-
-    console.log(email, password);
 
     await signIn(email, password);
   };

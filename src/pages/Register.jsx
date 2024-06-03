@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useAuth from "../hooks/useAuth";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/Login-Register/GoogleLogin";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
   const [passMatch, setPassMatch] = useState(true);
@@ -16,6 +16,7 @@ const Register = () => {
 
     const form = e.target;
     const email = form.email.value;
+    const name = form.name.value;
     const password = form.password.value;
     const confirm_password = form.confirm_password.value;
 
@@ -26,7 +27,23 @@ const Register = () => {
     console.log(email, password, confirm_password);
 
     if (password === confirm_password) {
-      createUser(email, password);
+      createUser(email, password).then((data) => {
+        if (data?.user?.email) {
+          const userInfo = {
+            email: data?.user?.email,
+            name: name,
+          };
+          fetch("http://localhost:5000/user", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+        }
+      });
       if (user) {
         navigate(from);
       }
@@ -46,6 +63,18 @@ const Register = () => {
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="name"
+                placeholder="name"
+                className="input input-bordered"
+                name="name"
+                required
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
