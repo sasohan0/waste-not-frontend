@@ -1,7 +1,19 @@
+import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setUserInfo(data));
+  }, [user]);
+
+  console.log(userInfo);
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -23,6 +35,12 @@ const Dashboard = () => {
           <p className="text-blue-700 font-bold">
             {user.uid ? user.uid : "ID not found"}
           </p>
+          <Link
+            to={`/dashboard/profile/edit/${userInfo?._id}`}
+            className="btn btn-neutral btn-md"
+          >
+            Edit Profile
+          </Link>
         </div>
       </div>
     </div>
