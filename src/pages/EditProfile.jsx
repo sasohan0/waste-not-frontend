@@ -70,7 +70,7 @@ export default function EditProfile() {
           <input
             type="submit"
             value="Update Profile"
-            className="py-2 px-1 bg-slate-950 text-white "
+            className="py-2 px-1 bg-slate-950 text-white btn btn-secondary "
           />
         </div>
       </form>
