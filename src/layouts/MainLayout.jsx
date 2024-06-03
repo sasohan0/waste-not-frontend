@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "../common/Navbar";
 
 const MainLayout = () => {
   return (
     <div>
-      <div>navbar</div>
+      <Navbar></Navbar>
       <div>body</div>
       <div>footer</div>
     </div>
