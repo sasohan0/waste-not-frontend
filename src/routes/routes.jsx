@@ -5,5 +5,12 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <div>404</div>,
+    children: [
+      {
+        path: "/",
+        element: <div>THis is home</div>,
+      },
+    ],
   },
 ]);
