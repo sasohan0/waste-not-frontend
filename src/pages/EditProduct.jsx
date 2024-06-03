@@ -8,7 +8,7 @@ const EditProduct = () => {
   const [title, setTitle] = useState(shoe.title);
   const [price, setPrice] = useState(shoe.price);
   const [brand, setBrand] = useState(shoe.brand);
-  const [id, setId] = useState(shoe.id);
+
   const [description, setDescription] = useState(shoe.description);
   const [image_url, setImageURL] = useState(shoe.image_url);
 
@@ -17,14 +17,14 @@ const EditProduct = () => {
     e.preventDefault();
 
     const form = e.target;
-    const id = form.id.value;
+
     const title = form.title.value;
     const brand = form.brand.value;
     const price = form.price.value;
     const description = form.description.value;
     const image_url = form.image_url.value;
 
-    const data = { id, title, brand, price, description, image_url };
+    const data = { title, brand, price, description, image_url };
     Swal.fire({
       title: "Do you want to save the changes?",
       showDenyButton: true,
@@ -113,18 +113,6 @@ const EditProduct = () => {
               required
             />
           </div>
-          <div className="mr-2 flex justify-center items-center">
-            <input
-              className="bg-purple-100  hover:bg-purple-200 p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
-              type="text"
-              name="id"
-              placeholder="ID"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              required
-            />
-          </div>
-
           <div className="modal-action flex justify-center items-center">
             <input
               className="btn hover:text-black ease-in duration-300 w-auto h-auto border bg-purple-500 text-white p-4"

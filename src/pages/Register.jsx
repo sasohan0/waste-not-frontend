@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GoogleLogin from "../components/Login-Register/GoogleLogin";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
@@ -41,14 +41,18 @@ const Register = () => {
             body: JSON.stringify(userInfo),
           })
             .then((res) => res.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+              localStorage.setItem("token", data?.token);
+            });
         }
       });
-      if (user) {
-        navigate(from);
-      }
     }
   };
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, from, navigate]);
 
   return (
     <form onSubmit={handleSUbmit} className="hero min-h-screen bg-base-200">
