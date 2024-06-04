@@ -53,10 +53,10 @@ const Products = ({ products }) => {
       <div className="flex flex-wrap gap-7 px-6 justify-center items-center ">
         {searchInput.length > 1
           ? filteredResults?.map((product) => (
-              <Product key={product.id} product={product} />
+              <Product key={product._id} product={product} />
             ))
           : APIData?.map((product) => (
-              <Product key={product.id} product={product} />
+              <Product key={product._id} product={product} />
             ))}
       </div>
     </div>
