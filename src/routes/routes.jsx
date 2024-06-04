@@ -15,6 +15,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Blogs from "../pages/Blogs";
 import Analytics from "../pages/Analytics";
+import Carousel from "../pages/Carousel";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+      },
+      {
+        path: "/carousel",
+        element: <Carousel />,
       },
       {
         path: "/login",

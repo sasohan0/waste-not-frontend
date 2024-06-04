@@ -15,7 +15,7 @@ const SingleProductCardDashboard = ({ product, onDelete }) => {
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/products/${id}`, {
+        fetch(`https://waste-not-backend.onrender.com/${id}`, {
           method: "DELETE",
           headers: {
             "Content-type": "application/json",

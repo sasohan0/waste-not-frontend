@@ -61,6 +61,9 @@ const Navbar = () => {
             <li>
               <Link to={"/blogs"}>Blogs</Link>
             </li>
+            <li>
+              <Link to={"/carousel"}>Examples</Link>
+            </li>
             {!user && (
               <>
                 <li>
@@ -105,6 +108,9 @@ const Navbar = () => {
           </li>
           <li>
             <Link to={"/blogs"}>Blogs</Link>
+          </li>
+          <li>
+            <Link to={"/carousel"}>Examples</Link>
           </li>
           {!user && (
             <>
