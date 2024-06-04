@@ -8,7 +8,7 @@ const Analytics = () => {
   const currentUserEmail = user?.email;
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/products", {
+    fetch("https://waste-not-backend.onrender.com/products", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -54,7 +54,7 @@ const Analytics = () => {
           </Link>
         </div>
       ) : (
-        <div>0%</div>
+        <div></div>
       )}
     </div>
   );

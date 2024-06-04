@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user?.email}`, {
+    fetch(`https://waste-not-backend.onrender.com/user/${user?.email}`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",

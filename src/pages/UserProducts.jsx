@@ -14,7 +14,7 @@ const UserProducts = () => {
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   useEffect(() => {
-    fetch("http://localhost:5000/products", {
+    fetch("https://waste-not-backend.onrender.com/products", {
       method: "GET",
       headers: {
         "Content-type": "application/json",

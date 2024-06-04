@@ -25,7 +25,7 @@ const AddProduct = () => {
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("http://localhost:5000/products", {
+        fetch("https://waste-not-backend.onrender.com/products", {
           method: "POST",
           headers: {
             "Content-type": "application/json",

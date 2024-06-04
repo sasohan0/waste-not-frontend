@@ -25,13 +25,13 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () => fetch("https://waste-not-backend.onrender.com/products"),
       },
       {
         path: "/products/:id",
         element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://waste-not-backend.onrender.com/products/${params.id}`),
       },
       {
         path: "/about",
@@ -72,7 +72,7 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/user/get/${params.id}`),
+          fetch(`https://waste-not-backend.onrender.com/user/get/${params.id}`),
       },
       {
         path: "my-products",
@@ -106,7 +106,7 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://waste-not-backend.onrender.com/products/${params.id}`),
       },
     ],
   },

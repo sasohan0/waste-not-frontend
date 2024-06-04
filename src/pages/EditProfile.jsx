@@ -42,7 +42,7 @@ export default function EditProfile() {
       //   email: data?.email,
     };
 
-    fetch(`http://localhost:5000/user/${data?.email}`, {
+    fetch(`https://waste-not-backend.onrender.com/user/${data?.email}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
