@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 // eslint-disable-next-line react/prop-types
 const SingleProductCardDashboard = ({ product, onDelete }) => {
-  const { id, title, brand, price, description, image_url } = product;
+  const { id, title, brand, price, description, image_url, email } = product;
 
   const handleDelete = async () => {
     Swal.fire({
@@ -33,6 +33,9 @@ const SingleProductCardDashboard = ({ product, onDelete }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
+        <span>
+          Added by: <div className="badge badge-neutral">neutral</div>
+        </span>
         <img src={image_url} alt="products" />
       </figure>
       <div className="card-body">

@@ -5,7 +5,7 @@ import Register from "../pages/Register";
 import Home from "../pages/Home";
 import ProductDetails from "../pages/ProductDetails";
 import About from "../pages/About";
-import AllProducts from "../pages/AllProducts";
+import UserProducts from "../pages/UserProducts";
 import EditProduct from "../pages/EditProduct";
 import Dashboard from "../pages/Dashboard";
 import ErrorPage from "../pages/ErrorPage";
@@ -13,12 +13,18 @@ import AddProduct from "../pages/AddProduct";
 import EditProfile from "../pages/EditProfile";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Blogs from "../pages/Blogs";
+import Analytics from "../pages/Analytics";
+import useAuth from "../hooks/useAuth";
+import { getAuth } from "firebase/auth";
 
+const auth = getAuth();
+const user = auth?.currentUser;
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement: <div>404</div>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -34,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
       {
         path: "/login",
@@ -69,10 +79,10 @@ export const router = createBrowserRouter([
           fetch(`http://localhost:5000/user/get/${params.id}`),
       },
       {
-        path: "all-products",
+        path: "my-products",
         element: (
           <PrivateRoutes>
-            <AllProducts />
+            <UserProducts />
           </PrivateRoutes>
         ),
       },
@@ -85,7 +95,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "all-products/edit/:id",
+        path: "analytics",
+        element: (
+          <PrivateRoutes>
+            <Analytics />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "my-products/edit/:id",
         element: (
           <PrivateRoutes>
             <EditProduct />

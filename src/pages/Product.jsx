@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Product = ({ product }) => {
-  const { id, title, brand, price, description, image_url } = product;
+  const { _id, title, brand, price, description, image_url, email } = product;
+  const { user } = useAuth();
+  const currentUserEmail = user?.email;
   return (
     <div className="card w-96 h-auto bg-base-100 shadow-xl">
+      <span>
+        Added By <div className="badge badge-neutral">{email}</div>
+      </span>
       <figure className="bg-base-200  ">
         <img
-          className=" hover:scale-150 ease-in duration-500"
+          className=" hover:scale-105 ease-in duration-500"
           src={image_url}
           alt="products"
         />
@@ -22,8 +28,13 @@ const Product = ({ product }) => {
         </p>
         <div className="card-actions justify-end">
           <button className="btn bg-slate-700 text-white hover:text-black">
-            <Link to={`/products/${id}`}>See details</Link>
+            <Link to={`/products/${_id}`}>See details</Link>
           </button>
+          {email === currentUserEmail && (
+            <button className="btn bg-slate-700 text-white hover:text-black">
+              <Link to={`../../dashboard/my-products/edit/${_id}`}>Edit</Link>
+            </button>
+          )}
         </div>
       </div>
     </div>

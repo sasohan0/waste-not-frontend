@@ -10,7 +10,7 @@ const WhatWeDo = () => {
           <div className="w-10 rounded-full">
             <img
               alt="Tailwind CSS chat bubble component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+              src="placeholder.jpg"
             />
           </div>
         </div>
@@ -24,10 +24,7 @@ const WhatWeDo = () => {
       <div className="chat chat-end">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS chat bubble component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-            />
+            <img alt="Tailwind CSS chat bubble component" src="waste_not.png" />
           </div>
         </div>
         <div className="chat-header">

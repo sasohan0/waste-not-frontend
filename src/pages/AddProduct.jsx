@@ -1,7 +1,11 @@
 import toast from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const token = localStorage.getItem("token");
+  const { user } = useAuth();
+  const email = user?.email;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -12,21 +16,33 @@ const AddProduct = () => {
     const description = form.description.value;
     const image_url = form.image_url.value;
 
-    const data = { title, brand, price, description, image_url };
-
-    await fetch("http://localhost:5000/products", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        toast.success("Product added successful");
-        form.reset();
-      });
+    const data = { title, brand, price, description, image_url, email };
+    Swal.fire({
+      title: "Do you want to add the product?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch("http://localhost:5000/products", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            toast.success("Product added successful");
+            form.reset();
+          });
+        Swal.fire("Product Added!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Product was not added", "", "info");
+      }
+    });
   };
 
   return (

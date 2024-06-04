@@ -2,27 +2,46 @@
 
 import { Link } from "react-router-dom";
 
+import Swal from "sweetalert2";
+
 // eslint-disable-next-line react/prop-types
 const SingleProductCardDashboard = ({ product, onDelete }) => {
   const token = localStorage.getItem("token");
-  const { _id, title, brand, price, description, image_url } = product;
+
+  const { _id, title, brand, price, description, image_url, email } = product;
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:5000/products/${_id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then(() => {
-        onDelete(_id);
-      });
+    Swal.fire({
+      title: "Do you want to delete the product?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/products/${_id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        })
+          .then((res) => res.json())
+          .then(() => {
+            onDelete(_id);
+          });
+        Swal.fire("Deleted successfully", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Not deleted");
+      }
+    });
   };
 
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
+      <span>
+        Added By: <div className="badge badge-neutral">{email}</div>
+      </span>
       <figure>
         <img src={image_url} alt="products" />
       </figure>

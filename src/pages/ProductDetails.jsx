@@ -1,10 +1,16 @@
 import { Link, useLoaderData } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const ProductDetails = () => {
   const product = useLoaderData();
-  const { title, brand, price, description, image_url } = product;
+  const { user } = useAuth();
+  const currentUserEmail = user?.email;
+  const { _id, title, brand, price, description, image_url, email } = product;
   return (
     <div className="flex justify-center items-center mt-8 mb-8">
+      <span>
+        Added By: <div className="badge badge-neutral">{email}</div>
+      </span>
       <div className="card w-96 h-auto bg-base-100 shadow-xl">
         <figure className="bg-base-200  ">
           <img className=" scale-150 " src={image_url} alt="products" />
@@ -18,6 +24,11 @@ const ProductDetails = () => {
             <button className="btn bg-slate-700 text-white hover:text-black">
               <Link to={`/`}>Back to Products</Link>
             </button>
+            {email === currentUserEmail && (
+              <button className="btn bg-slate-700 text-white hover:text-black">
+                <Link to={`../../dashboard/my-products/edit/${_id}`}>Edit</Link>
+              </button>
+            )}
           </div>
         </div>
       </div>

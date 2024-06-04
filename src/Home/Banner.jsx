@@ -1,19 +1,17 @@
 const Banner = () => {
   return (
     <div
-      className="hero h-[500px] "
+      className="hero h-[600px] "
       style={{
-        backgroundImage: "url(banner.jpg)",
+        backgroundImage: "url(banner.png)",
       }}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-overlay bg-opacity-20"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Welcome To productist</h1>
+          <h1 className="mb-5 text-5xl font-bold">Welcome To Waste Not</h1>
           <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Here you can buy what you want and sell what you don't need
           </p>
           <a
             href="#products"
