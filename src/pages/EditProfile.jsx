@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { getAuth, updatePassword } from "firebase/auth";
+import Swal from "sweetalert2";
 
 export default function EditProfile() {
   const auth = getAuth();
@@ -42,16 +43,29 @@ export default function EditProfile() {
       //   email: data?.email,
     };
 
-    fetch(`https://waste-not-backend.onrender.com/user/${data?.email}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(userData),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log("patched:", data));
+    Swal.fire({
+      title: "Do you want Update Profile?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://waste-not-backend.onrender.com/user/${data?.email}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(userData),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log("patched:", data));
+        Swal.fire("Profile Updated!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Profile not updated", "", "info");
+      }
+    });
   };
   return (
     <div>
@@ -63,7 +77,7 @@ export default function EditProfile() {
           <input
             type="text"
             name="name"
-            defaultValue={data?.name}
+            defaultValue={user?.displayName}
             className="py-2 px-1 bg-slate-50 "
           />
         </div>
@@ -71,7 +85,7 @@ export default function EditProfile() {
           <label htmlFor="">User email</label>
           <input
             type="text"
-            value={data?.email}
+            value={user?.email}
             disabled
             name="email"
             className="py-2 px-1 bg-slate-50 "

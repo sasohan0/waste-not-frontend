@@ -1,4 +1,4 @@
-import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 
 const GithubLogin = () => {
@@ -29,8 +29,8 @@ const GithubLogin = () => {
   return (
     <button onClick={handleGithubSignIn} className="btn w-full">
       <div className="flex items-center gap-2">
-        <FcGoogle size={24} />
-        <p>Google</p>
+        <FaGithub size={24} />
+        <p>Github</p>
       </div>
     </button>
   );

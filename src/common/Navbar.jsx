@@ -143,7 +143,7 @@ const Navbar = () => {
             <div className="rounded-full">
               <img
                 className="rounded-full  border-slate-500 border-4"
-                src={user?.photoURL || "/public/placeholder.jpg"}
+                src={user?.photoURL || "placeholder.jpg"}
               />
             </div>
           </Link>

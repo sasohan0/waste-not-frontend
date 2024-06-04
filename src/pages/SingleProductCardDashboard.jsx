@@ -40,7 +40,11 @@ const SingleProductCardDashboard = ({ product, onDelete }) => {
         <span>
           Added by: <div className="badge badge-neutral">neutral</div>
         </span>
-        <img src={image_url} alt="products" />
+        <img
+          className="w-96 h-96 object-contain"
+          src={image_url}
+          alt="products"
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
