@@ -14,7 +14,7 @@ const AddProduct = () => {
 
     const data = { title, brand, price, description, image_url };
 
-    await fetch("http://localhost:5000/shoes", {
+    await fetch("http://localhost:5000/products", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -74,6 +74,15 @@ const AddProduct = () => {
               name="image_url"
               placeholder="Image URL"
             />
+            Click{" "}
+            <a
+              className="text-primary"
+              href="https://imgbb.com/"
+              target="blank"
+            >
+              here
+            </a>{" "}
+            to get image URL
           </div>
 
           <div className="mt-2 flex justify-center items-center">

@@ -3,14 +3,14 @@ import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const EditProduct = () => {
-  const shoe = useLoaderData();
+  const product = useLoaderData();
 
-  const [title, setTitle] = useState(shoe.title);
-  const [price, setPrice] = useState(shoe.price);
-  const [brand, setBrand] = useState(shoe.brand);
+  const [title, setTitle] = useState(product.title);
+  const [price, setPrice] = useState(product.price);
+  const [brand, setBrand] = useState(product.brand);
 
-  const [description, setDescription] = useState(shoe.description);
-  const [image_url, setImageURL] = useState(shoe.image_url);
+  const [description, setDescription] = useState(product.description);
+  const [image_url, setImageURL] = useState(product.image_url);
 
   const handleSubmit = async (e) => {
     const token = localStorage.getItem("token");
@@ -34,7 +34,7 @@ const EditProduct = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/shoes/${shoe._id}`, {
+        fetch(`http://localhost:5000/products/${product._id}`, {
           method: "PATCH",
           headers: {
             "Content-type": "application/json",
@@ -52,7 +52,7 @@ const EditProduct = () => {
 
   return (
     <div>
-      <h1 className="text-5xl text-purple-600 hover:scale-110 ease-in duration-300 font-bold text-center">
+      <h1 className="text-5xl text-slate-600 hover:scale-110 ease-in duration-300 font-bold text-center">
         Edit Product
       </h1>
 
@@ -60,7 +60,7 @@ const EditProduct = () => {
         <form onSubmit={handleSubmit}>
           <div className="mr-2 flex justify-center items-center">
             <input
-              className="bg-purple-100  hover:bg-purple-200   p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
+              className="bg-slate-100  hover:bg-slate-200   p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
               type="text"
               name="title"
               placeholder="Title"
@@ -71,7 +71,7 @@ const EditProduct = () => {
           </div>
           <div className="mr-2 flex justify-center items-center">
             <input
-              className="bg-purple-100  hover:bg-purple-200 p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
+              className="bg-slate-100  hover:bg-slate-200 p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
               type="text"
               name="brand"
               placeholder="Brand"
@@ -82,7 +82,7 @@ const EditProduct = () => {
           </div>
           <div className="mr-2 flex justify-center items-center">
             <input
-              className="bg-purple-100  hover:bg-purple-200 p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
+              className="bg-slate-100  hover:bg-slate-200 p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
               type="number"
               name="price"
               placeholder="Price"
@@ -93,7 +93,7 @@ const EditProduct = () => {
           </div>
           <div className="mr-2 flex justify-center items-center">
             <input
-              className="bg-purple-100  hover:bg-purple-200 p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
+              className="bg-slate-100  hover:bg-slate-200 p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
               type="text"
               name="description"
               placeholder="Description"
@@ -104,7 +104,7 @@ const EditProduct = () => {
           </div>
           <div className="mr-2 flex justify-center items-center">
             <input
-              className="bg-purple-100  hover:bg-purple-200 p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
+              className="bg-slate-100  hover:bg-slate-200 p-4 hover:w-full ease-in duration-300 p-4 w-96 border border border-black rounded-lg"
               type="text"
               name="image_url"
               placeholder="Image URL"
@@ -115,7 +115,7 @@ const EditProduct = () => {
           </div>
           <div className="modal-action flex justify-center items-center">
             <input
-              className="btn hover:text-black ease-in duration-300 w-auto h-auto border bg-purple-500 text-white p-4"
+              className="btn hover:text-black ease-in duration-300 w-auto h-auto border bg-slate-500 text-white p-4"
               type="submit"
               value="Edit product"
             />

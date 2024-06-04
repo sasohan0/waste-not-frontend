@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-purple-300">
+    <div className="navbar bg-slate-300">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -80,7 +80,12 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Shoeist</a>
+        <a href="/" className="btn btn-ghost text-xl flex items-center">
+          <div className="w-12">
+            <img src="/waste_not.png" alt="" />
+          </div>{" "}
+          Waste Not
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -120,7 +125,7 @@ const Navbar = () => {
           <Link className="w-12 " to={user ? "/dashboard/home" : "/login"}>
             <div className="rounded-full">
               <img
-                className="rounded-full  border-purple-500 border-4"
+                className="rounded-full  border-slate-500 border-4"
                 src={user?.photoURL || "/public/placeholder.jpg"}
               />
             </div>

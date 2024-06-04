@@ -31,7 +31,7 @@ const Dashboard = () => {
             {user?.emailVerified ? `✅` : `❌`}
           </h1>
 
-          <p className="py-6 text-2xl text-purple-800">{userInfo?.email}</p>
+          <p className="py-6 text-2xl text-slate-800">{userInfo?.email}</p>
           <p className="text-blue-700 font-bold">
             {user.uid ? user.uid : "ID not found"}
           </p>

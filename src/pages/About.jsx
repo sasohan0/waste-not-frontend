@@ -5,11 +5,11 @@ const About = () => {
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img src="about.jpg" className="max-w-sm rounded-lg shadow-2xl" />
           <div>
-            <h1 className="text-5xl font-bold">We are The Shoeist!</h1>
+            <h1 className="text-5xl font-bold">We are The productist!</h1>
             <p className="py-6">WE simply provide the best!</p>
             <a
               href="/#products"
-              className="btn bg-purple-700 text-white hover:text-black"
+              className="btn bg-slate-700 text-white hover:text-black"
             >
               See Products
             </a>

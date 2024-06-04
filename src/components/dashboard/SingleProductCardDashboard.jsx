@@ -3,12 +3,12 @@
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const SingleProductCardDashboard = ({ shoe, onDelete }) => {
+const SingleProductCardDashboard = ({ product, onDelete }) => {
   const token = localStorage.getItem("token");
-  const { _id, title, brand, price, description, image_url } = shoe;
+  const { _id, title, brand, price, description, image_url } = product;
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:5000/shoes/${_id}`, {
+    await fetch(`http://localhost:5000/products/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -24,7 +24,7 @@ const SingleProductCardDashboard = ({ shoe, onDelete }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
-        <img src={image_url} alt="Shoes" />
+        <img src={image_url} alt="products" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>

@@ -4,7 +4,7 @@ const Accordian = () => {
       <h1 className="my-16 text-center font-bold text-3xl">
         Frequently Asked Questions!
       </h1>
-      <div className="bg-purple-200 border-4 border-purple-400 collapse collapse-arrow ">
+      <div className="bg-slate-200 border-4 border-slate-400 collapse collapse-arrow ">
         <input type="radio" name="my-accordion-2" defaultChecked />
         <div className="collapse-title text-xl font-medium">
           How to determine size?
@@ -13,14 +13,14 @@ const Accordian = () => {
           <p>Grab a scale and watch our size measurement on product page.</p>
         </div>
       </div>
-      <div className="collapse border-4 border-purple-400 collapse-arrow bg-purple-200">
+      <div className="collapse border-4 border-slate-400 collapse-arrow bg-slate-200">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium">How to return?</div>
         <div className="collapse-content">
           <p>Make Unboxing video and mail us!</p>
         </div>
       </div>
-      <div className="collapse collapse-arrow border-4 border-purple-400 bg-purple-200">
+      <div className="collapse collapse-arrow border-4 border-slate-400 bg-slate-200">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium">
           How to check authentic product?
