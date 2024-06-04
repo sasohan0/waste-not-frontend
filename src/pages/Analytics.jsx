@@ -4,10 +4,17 @@ import { Link } from "react-router-dom";
 
 const Analytics = () => {
   const { user } = useAuth();
+  const token = localStorage.getItem("token");
   const currentUserEmail = user?.email;
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("http://localhost:5000/products", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) =>
         setProducts(

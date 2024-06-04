@@ -15,11 +15,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Blogs from "../pages/Blogs";
 import Analytics from "../pages/Analytics";
-import useAuth from "../hooks/useAuth";
-import { getAuth } from "firebase/auth";
 
-const auth = getAuth();
-const user = auth?.currentUser;
 export const router = createBrowserRouter([
   {
     path: "/",

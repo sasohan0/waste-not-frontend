@@ -12,7 +12,7 @@ const Product = ({ product }) => {
       </span>
       <figure className="bg-base-200  ">
         <img
-          className=" hover:scale-105 ease-in duration-500"
+          className=" hover:scale-105 ease-in duration-500 w-96 h-96 object-contain"
           src={image_url}
           alt="products"
         />

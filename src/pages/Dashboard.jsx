@@ -3,11 +3,18 @@ import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
+  const token = localStorage.getItem("token");
   const { user } = useAuth();
   const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user?.email}`)
+    fetch(`http://localhost:5000/user/${user?.email}`, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setUserInfo(data));
   }, [user]);

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 // eslint-disable-next-line react/prop-types
 const SingleProductCardDashboard = ({ product, onDelete }) => {
   const { id, title, brand, price, description, image_url, email } = product;
-
+  const token = localStorage.getItem("token");
   const handleDelete = async () => {
     Swal.fire({
       title: "Do you want to delete the product?",
@@ -17,6 +17,10 @@ const SingleProductCardDashboard = ({ product, onDelete }) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:3000/products/${id}`, {
           method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {

@@ -4,7 +4,7 @@ import { getAuth, updatePassword } from "firebase/auth";
 
 export default function EditProfile() {
   const auth = getAuth();
-
+  const token = localStorage.getItem("token");
   const user = auth.currentUser;
   const data = useLoaderData();
 
@@ -46,6 +46,7 @@ export default function EditProfile() {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userData),
     })
