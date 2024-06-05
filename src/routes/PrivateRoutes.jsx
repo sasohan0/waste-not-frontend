@@ -1,27 +1,36 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Swal from "sweetalert2";
 
 const PrivateRoutes = ({ children }) => {
   const { user, loading, logout } = useAuth();
   const location = useLocation();
-  const token = localStorage.getItem("token");
+  let token;
+  setTimeout(() => {
+    token = localStorage.getItem("token");
+  }, 500);
 
   if (loading) {
     return <LoadingSpinner />;
   }
 
-  // if (!token && user) {
-  //   <LoadingSpinner />;
-  //   logout();
+  setTimeout(() => {
+    if (!token) {
+      Swal.fire({
+        icon: "error",
+        title: "Session Expired",
+        text: "Please login again",
+      }).then(() => {
+        setTimeout(() => {
+          logout();
+        }, 800);
+      });
+    }
+  }, 600);
 
-  //   // If not authenticated, redirect to the login page
-  // }
-
-  if (token && user) {
+  if (user) {
     return children;
-  } else {
-    logout();
   }
 
   return <Navigate to={"/login"} state={{ from: location }} replace />;

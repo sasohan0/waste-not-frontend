@@ -1,16 +1,32 @@
-import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { getAuth, updatePassword } from "firebase/auth";
 import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
 
 export default function EditProfile() {
   const auth = getAuth();
   const token = localStorage.getItem("token");
   const user = auth.currentUser;
-  const data = useLoaderData();
+  const [data, setData] = useState([]);
+  const { id } = useParams();
+  console.log("EditProfile", id);
 
+  useEffect(() => {
+    fetch(`https://waste-not-backend.onrender.com/user/get/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data:", data);
+        setData(data);
+      });
+  }, []);
   // console.log("new:", user);
-  console.log(data);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 

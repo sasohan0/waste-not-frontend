@@ -76,8 +76,8 @@ export const router = createBrowserRouter([
             <EditProfile />
           </PrivateRoutes>
         ),
-        loader: ({ params }) =>
-          fetch(`https://waste-not-backend.onrender.com/user/get/${params.id}`),
+        // loader: ({ params }) =>
+        //   fetch(`https://waste-not-backend.onrender.com/user/get/${params.id}`),
       },
       {
         path: "my-products",

@@ -1,11 +1,13 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../components/Login-Register/GoogleLogin";
 import useAuth from "../hooks/useAuth";
-import { useEffect } from "react";
+
 import GithubLogin from "../components/Login-Register/GithubLogin";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const { signIn, user } = useAuth();
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,18 +20,30 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-
-    await fetch("https://waste-not-backend.onrender.com/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
+    signIn(email, password)
+      .catch((error) => {
+        setError(error);
+      })
       .then((data) => {
-        localStorage.setItem("token", data?.token);
+        if (data?.user?.email) {
+          const userInfo = {
+            email: data?.user?.email,
+            name: data?.user?.displayName,
+          };
+          fetch("https://waste-not-backend.onrender.com/user", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              localStorage.setItem("token", data?.token);
+            });
+        }
       });
-    signIn(email, password);
+
     //  I previously implemented JWT authenctication while Login. But if the token is once deleted the user cannot log in anymore so I commented it
     // fetch(`https://waste-not-backend.onrender.com/user/${email}`, {
     //   method: "GET",
@@ -82,6 +96,7 @@ const Login = () => {
                   required
                 />
               </div>
+              {error && <div className="text-red-500">{error?.message}</div>}
 
               <div className="form-control mt-6">
                 <input

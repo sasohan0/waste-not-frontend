@@ -3,9 +3,10 @@ import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const token = localStorage.getItem("token");
   const { user } = useAuth();
+  console.log("from dashboard", user?.email);
   const [userInfo, setUserInfo] = useState();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     fetch(`https://waste-not-backend.onrender.com/user/${user?.email}`, {
@@ -19,7 +20,7 @@ const Dashboard = () => {
       .then((data) => setUserInfo(data));
   }, [user, token]);
 
-  console.log(userInfo);
+  console.log("in dashboard userinfo", userInfo);
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -32,15 +33,33 @@ const Dashboard = () => {
             />
           </div>
         </div>
-        <div>
-          <h1 className="text-5xl font-bold">
+        <div className="flex justify-center items-center flex-col gap-0">
+          <h1 className="text-5xl font-bold text-center">
             {userInfo?.name}
-            {user?.emailVerified ? `✅` : `❌`}
+            {user?.emailVerified ? (
+              <div className="py-2">
+                {" "}
+                ✅<small className="text-base italic">(verified)</small>
+              </div>
+            ) : (
+              <div>
+                {" "}
+                ❌<small className="text-base italic">(unverified)</small>
+              </div>
+            )}
           </h1>
 
-          <p className="py-6 text-2xl text-slate-800">{userInfo?.email}</p>
-          <p className="text-blue-700 font-bold">
-            {user.uid ? user.uid : "ID not found"}
+          <p className="py-2 text-2xl text-slate-800">
+            Email : {userInfo?.email}
+          </p>
+          <p className="py-2 text-2xl text-slate-800">
+            Age : {userInfo?.age || "18+"}
+          </p>
+          <p className="py-2 text-2xl text-slate-800">
+            Phone : +88{userInfo?.mobileNumber || "+880.........."}
+          </p>
+          <p className="text-blue-700 font-bold pb-2">
+            Unique ID : {userInfo?._id || "ID not found"}
           </p>
           <Link
             to={`/dashboard/profile/edit/${userInfo?._id}`}

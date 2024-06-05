@@ -7,6 +7,7 @@ import GithubLogin from "../components/Login-Register/GithubLogin";
 const Register = () => {
   const [passMatch, setPassMatch] = useState(true);
   const { createUser, user } = useAuth();
+  const [nextError, setNextError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,25 +29,29 @@ const Register = () => {
     console.log(email, password, confirm_password);
 
     if (password === confirm_password) {
-      createUser(email, password).then((data) => {
-        if (data?.user?.email) {
-          const userInfo = {
-            email: data?.user?.email,
-            name: name,
-          };
-          fetch("https://waste-not-backend.onrender.com/user", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userInfo),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              localStorage.setItem("token", data?.token);
-            });
-        }
-      });
+      createUser(email, password)
+        .catch((error) => {
+          setNextError(error);
+        })
+        .then((data) => {
+          if (data?.user?.email) {
+            const userInfo = {
+              email: data?.user?.email,
+              name: name,
+            };
+            fetch("https://waste-not-backend.onrender.com/user", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userInfo),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                localStorage.setItem("token", data?.token);
+              });
+          }
+        });
     }
   };
   useEffect(() => {
@@ -113,6 +118,9 @@ const Register = () => {
                   required
                 />
               </div>
+              {nextError && (
+                <div className="text-red-500">{nextError.message}</div>
+              )}
               {!passMatch && (
                 <div className="my-2">
                   <p className="text-red-500">Passwords do not match!</p>
