@@ -1,9 +1,12 @@
 const About = () => {
   return (
-    <div className="flex justify-center items-center">
-      <div className="hero w-1/2 min-h-screen">
+    <div className="flex justify-center items-center bg-opacity-0">
+      <div className="hero w-auto min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <img src="about.jpg" className="max-w-sm rounded-lg shadow-2xl" />
+          <img
+            src="no_waste_bg.jpg"
+            className="max-w-sm rounded-lg shadow-2xl"
+          />
           <div>
             <h1 className="text-5xl font-bold">We are against wastage !</h1>
             <p className="py-6">

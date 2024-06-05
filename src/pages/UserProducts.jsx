@@ -71,7 +71,7 @@ const UserProducts = () => {
           </svg>
         </label>
       </div>
-      <div className="my-12 flex flex-wrap gap-4">
+      <div className="my-12 mx-auto flex flex-wrap gap-4">
         {searchInput.length > 1
           ? filteredResults?.map((product) => (
               <SingleProductCardDashboard key={product.id} product={product} />

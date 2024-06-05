@@ -5,12 +5,12 @@ const DashboardLayout = () => {
   const { user } = useAuth();
 
   return (
-    <div className="grid grid-cols-12 ">
-      <div className=" col-span-2 bg-slate-300 hover:bg-slate-400 min-h-screen p-8">
+    <div className="flex flex-wrap justify-center items-center md:grid md:grid-cols-12 ">
+      <div className="flex justify-start items-center flex-col md:col-span-2 bg-slate-300 hover:bg-slate-400 md:min-h-screen p-8">
         <div className="badge badge-ghost px-8 felx flex-wrap w-44">
           {user?.email}
         </div>
-        <ul className="sticky top-0 mt-2 pt-5">
+        <ul className="flex justify-center items-center flex-wrap md:grid sticky top-0 mt-2 pt-5">
           <li className="border bg-slate-300 hover:bg-slate-200 border-black rounded-lg p-4 text w-full">
             <Link to={"home"}>Dashboard</Link>
           </li>
@@ -28,7 +28,7 @@ const DashboardLayout = () => {
           </li>
         </ul>
       </div>
-      <div className="col-span-10 p-20">
+      <div className="col-span-10 p-20 mb-20">
         <Outlet />
       </div>
     </div>

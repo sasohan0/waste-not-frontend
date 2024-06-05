@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="navbar  text-white"
+      className="navbar  text-black md:text-white"
       style={{
         backgroundImage: "url(banner.png)",
       }}
