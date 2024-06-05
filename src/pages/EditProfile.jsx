@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+
 import { getAuth, updatePassword } from "firebase/auth";
 import Swal from "sweetalert2";
 
@@ -9,7 +9,7 @@ export default function EditProfile() {
   const user = auth.currentUser;
   const data = useLoaderData();
 
-  console.log("new:", user);
+  // console.log("new:", user);
   console.log(data);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,7 +77,7 @@ export default function EditProfile() {
           <input
             type="text"
             name="name"
-            defaultValue={user?.displayName}
+            defaultValue={data?.name}
             className="py-2 px-1 bg-slate-50 "
           />
         </div>
@@ -85,7 +85,7 @@ export default function EditProfile() {
           <label htmlFor="">User email</label>
           <input
             type="text"
-            value={user?.email}
+            value={data?.email}
             disabled
             name="email"
             className="py-2 px-1 bg-slate-50 "

@@ -6,7 +6,7 @@ import GithubLogin from "../components/Login-Register/GithubLogin";
 
 const Login = () => {
   const { signIn, user } = useAuth();
-  const token = localStorage.getItem("token");
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -18,6 +18,17 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+
+    await fetch("https://waste-not-backend.onrender.com/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem("token", data?.token);
+      });
     signIn(email, password);
     //  I previously implemented JWT authenctication while Login. But if the token is once deleted the user cannot log in anymore so I commented it
     // fetch(`https://waste-not-backend.onrender.com/user/${email}`, {

@@ -17,7 +17,7 @@ const Dashboard = () => {
     })
       .then((res) => res.json())
       .then((data) => setUserInfo(data));
-  }, [user]);
+  }, [user, token]);
 
   console.log(userInfo);
 
