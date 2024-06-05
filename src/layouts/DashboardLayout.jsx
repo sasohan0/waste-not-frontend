@@ -5,12 +5,9 @@ const DashboardLayout = () => {
   const { user } = useAuth();
 
   return (
-    <div className="flex flex-wrap justify-center items-center md:grid md:grid-cols-12 ">
-      <div className="flex justify-start items-center flex-col md:col-span-2 bg-slate-300 hover:bg-slate-400 md:min-h-screen p-8">
-        <div className="badge badge-ghost px-8 felx flex-wrap w-44">
-          {user?.email}
-        </div>
-        <ul className="flex justify-center items-center flex-wrap md:grid sticky top-0 mt-2 pt-5">
+    <div className="flex flex-wrap w-full justify-center items-center md:items-start md:min-h-screen md:grid md:grid-cols-12 ">
+      <div className="flex justify-center items-center md:items-start flex-col  md:grid md:col-span-2 bg-slate-300 hover:bg-slate-400 md:min-h-full p-8">
+        <ul className="flex justify-center items-center flex-wrap md:grid md:sticky top-0 mt-0 pt-5">
           <li className="border bg-slate-300 hover:bg-slate-200 border-black rounded-lg p-4 text w-full">
             <Link to={"home"}>Dashboard</Link>
           </li>
