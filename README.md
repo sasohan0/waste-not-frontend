@@ -1,3 +1,13 @@
+# 📝 Note to the Assignment Evaluator
+
+Dear Assignment Evaluator,
+
+I accidentally edited this README while adding this project to my portfolio. This is why it shows commits after the assignment deadline. I have contacted support on this issue. Please be kind and consider this accident without any penalty.
+
+Thank you for your understanding and consideration.
+
+Best Regards,
+[Solih Ahmad Sohan]
 
 ![Alt text](image-url= "waste_not_git_banner.jpg")
 
