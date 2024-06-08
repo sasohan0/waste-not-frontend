@@ -1,3 +1,6 @@
+
+![Alt text](image-url= "waste_not_git_banner.jpg")
+
 # 🚀 Waste Not - A Re-commerce Project 🌍
 
 ## 📝 Brief Description
@@ -18,27 +21,41 @@ To run this project on your local machine, follow these steps:
 3. Install the dependencies: `npm install`
 4. Start the server: `npm start`
 
-## Packages Used
-Express.js: For creating the server-side application
-MongoDB: For modeling and managing the application data
-Cors: For enabling CORS with various options
-Dotenv: For loading environment variables from a .env file
-Jsonwebtoken: For implementing JWT authentication
-Nodemon: For automatically restarting the node application when file changes are detected
-Concurrently: For running multiple npm scripts concurrently
-React: For building the user interface
-React-dom: For rendering React components
-React-router-dom: For managing routing in React
-React Icons: For using popular icons in your React applications
-SweetAlert2: For creating beautiful, responsive alerts
-Vite: A build tool that aims to provide a faster and leaner development experience for modern web projects
-Tailwind CSS: A utility-first CSS framework for rapidly building custom user interfaces
+## 📦 Packages Used
+
+- **Express.js**: For creating the server-side application 🚂
+- **MongoDB**: For modeling and managing the application data 🍃
+- **Cors**: For enabling CORS with various options 🌐
+- **Dotenv**: For loading environment variables from a .env file 🔐
+- **Jsonwebtoken**: For implementing JWT authentication 🔑
+- **Nodemon**: For automatically restarting the node application when file changes are detected 🔄
+- **Concurrently**: For running multiple npm scripts concurrently 🏃‍♂️
+- **React**: For building the user interface ⚛️
+- **React-dom**: For rendering React components 🎨
+- **React-router-dom**: For managing routing in React 🚦
+- **React Icons**: For using popular icons in your React applications 💠
+- **SweetAlert2**: For creating beautiful, responsive alerts 🚨
+- **Vite**: A build tool that aims to provide a faster and leaner development experience for modern web projects 🚀
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom user interfaces 🎨
 
 
 
-## API Endpoints
-https://waste-not-backend.onrender.com/products
-https://waste-not-backend.onrender.com/user (needs login)
+
+## 🌐 API Endpoints
+[root api live](https://waste-not-backend.onrender.com)
+- **User Authentication and Authorization** 🔐:
+  - `POST /api/users/signup`: Register a new user 📝
+  - `POST /api/users/login`: Authenticate a user and return a JWT 🔑
+  - `GET /api/users/profile`: Get the profile of the authenticated user 👤
+  - `PUT /api/users/profile`: Update the profile of the authenticated user 🔄
+  - `GET /api/users/:id`: Get a specific user by their ID 🔎
+
+- **Item Management** 📦:
+  - `POST /api/items`: Create a new item ➕
+  - `GET /api/items`: Get all items 📚
+  - `GET /api/items/:id`: Get a specific item by its ID 🔎
+  - `PUT /api/items/:id`: Update a specific item by its ID 🔄
+  - `DELETE /api/items/:id`: Delete a specific item by its ID ❌
 
 ## 📚 Schema
 
@@ -54,5 +71,7 @@ https://waste-not-backend.onrender.com/user (needs login)
 - `price`: (Number, required) The price of the item.
 - `owner`: (User ID, required) The user who listed the item.
 
-## Live Site
-[You can access the live site here.](https://waste-not-f415a.web.app/)
+## 🌐 Live Site
+-[You can access the live site here.](https://waste-not-f415a.web.app/)
+ -Enjoy exploring "Waste Not"! 🚀
+
